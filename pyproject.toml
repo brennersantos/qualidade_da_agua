@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "qualidade-da-agua"
+version = "0.1.0"
+description = ""
+authors = ["Brenner <bs.brenner.santos@gmail.com>"]
+readme = "README.md"
+packages = [{include = "qualidade_da_agua"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyspark = "^3.3.1"
+apache-airflow = "^2.5.1"
+great-expectations = "^0.15.44"
+
+
+[tool.poetry.group.dev.dependencies]
+blue = "^0.9.1"
+isort = "^5.11.4"
+pip-audit = "^2.4.14"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,24 @@
+spark_conf:
+  spark.appName: bronze-ana_ponto_em_operacao
+  spark.jars: /home/brenner/Projetos/qualidade_da_agua/qualidade_da_agua/jars/io.delta_delta-core_2.12-2.1.1.jar,/home/brenner/Projetos/qualidade_da_agua/qualidade_da_agua/jars/io.delta_delta-storage-2.1.1.jar
+  spark.sql.extensions: io.delta.sql.DeltaSparkSessionExtension
+  spark.sql.catalog.spark_catalog: org.apache.spark.sql.delta.catalog.DeltaCatalog
+  spark.sql.adaptive.enabled: false
+
+input_options:
+  path: /home/brenner/Projetos/qualidade_da_agua/datalake/landing/ana_ponto_em_operacao/
+  format: csv
+  header: true
+  schema: X double, Y double, OBJECTID int, CODIGO_ESTACAO string, ANO int, UF string, AMBIENTE int, ENTIDADE_RESPONSAVEL string, CORPO_DAGUA string
+  pathGlobFilter: Redes_Estaduais_-_Ponto_em_Operação*.csv
+
+output_options:
+  path: /home/brenner/Projetos/qualidade_da_agua/datalake/bronze/ana_ponto_em_operacao/
+  format: delta
+  mode: append
+  partitionBy: ['ds_particao']
+
+include_metadata:
+  dh_carga: f.current_timestamp()
+  ds_caminho_arquivo: f.input_file_name()
+  ds_particao: f.concat(f.date_format(f.col('dh_carga'),'yyyyMMddHHmmss'),f.lit('_'),f.reverse((f.split('ds_caminho_arquivo', '/')))[0])

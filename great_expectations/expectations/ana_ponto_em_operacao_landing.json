@@ -1,0 +1,45 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "ana_ponto_em_operacao_landing",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "X",
+          "Y",
+          "OBJECTID",
+          "CODIGO_ESTACAO",
+          "ANO",
+          "UF",
+          "AMBIENTE",
+          "ENTIDADE_RESPONSAVEL",
+          "CORPO_DAGUA"
+        ]
+      },
+      "meta": {
+        "notes": {
+          "content": "Verifica o schema da tabela",
+          "format": "markdown"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": null,
+        "min_value": 1
+      },
+      "meta": {
+        "notes": {
+          "content": "Verifica se h\u00e1 ao menos um registro na tabela",
+          "format": "markdown"
+        }
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.15.44"
+  }
+}

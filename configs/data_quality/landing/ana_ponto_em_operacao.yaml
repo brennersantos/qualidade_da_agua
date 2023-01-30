@@ -1,0 +1,18 @@
+spark_conf:
+  spark.appName: bronze-ana_ponto_em_operacao
+  spark.jars: /home/brenner/Projetos/qualidade_da_agua/qualidade_da_agua/jars/io.delta_delta-core_2.12-2.1.1.jar,/home/brenner/Projetos/qualidade_da_agua/qualidade_da_agua/jars/io.delta_delta-storage-2.1.1.jar
+  spark.sql.extensions: io.delta.sql.DeltaSparkSessionExtension
+  spark.sql.catalog.spark_catalog: org.apache.spark.sql.delta.catalog.DeltaCatalog
+  spark.sql.adaptive.enabled: false
+
+input_options:
+  path: /home/brenner/Projetos/qualidade_da_agua/datalake/landing/ana_ponto_em_operacao/
+  format: csv
+  header: true
+  pathGlobFilter: Redes_Estaduais_-_Ponto_em_Operação*.csv
+
+data_quality_options: 
+  checkpoint_name: ana_ponto_em_operacao_landing
+  batch_request:
+    batch_identifiers:
+      default_identifier_name: "%Y%m%d%H%M%S"
